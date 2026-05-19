@@ -3,6 +3,19 @@ resources:
 
 namespace: dev
 
-replicas:
-  - name: nginx-deployment
-    count: 5
+patches:
+  - target:
+      kind: Deployment
+      name: nginx-deployment
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 5
+
+  - target:
+      kind: Ingress
+      name: nginx-ingress
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: dev.nginx.local

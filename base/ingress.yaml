@@ -9,7 +9,6 @@ spec:
 
   rules:
   - host: nginx.local
-
     http:
       paths:
       - path: /

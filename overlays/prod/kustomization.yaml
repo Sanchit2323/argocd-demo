@@ -3,6 +3,19 @@ resources:
 
 namespace: prod
 
-replicas:
-  - name: nginx-deployment
-    count: 2
+patches:
+  - target:
+      kind: Deployment
+      name: nginx-deployment
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 2
+
+  - target:
+      kind: Ingress
+      name: nginx-ingress
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: prod.nginx.local

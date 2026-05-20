@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:latest
+        image: sanchit2323/demo-app:v1
 
         ports:
         - containerPort: 80
